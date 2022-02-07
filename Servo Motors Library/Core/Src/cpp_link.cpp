@@ -31,6 +31,19 @@ extern "C"
         while (1)
         {
             bluetooth_data = bluetooth_1.getChar();
+
+            if (bluetooth_data == 'l')
+            {
+                servo_1.turnShaft(SERVO_LEFT_POS);
+            }
+            else if (bluetooth_data == 'm')
+            {
+                servo_1.turnShaft(SERVO_CENTRE_POS);
+            }
+            else if (bluetooth_data == 'r')
+            {
+                servo_1.turnShaft(SERVO_RIGHT_POS);
+            }
         }
     }
 
