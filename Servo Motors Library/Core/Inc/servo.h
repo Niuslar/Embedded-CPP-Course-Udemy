@@ -14,7 +14,10 @@ class Servo
 {
 private:
 public:
-    Servo(TIM_HandleTypeDef &htim, uint8_t timer_channel);
+    Servo(pin_struct_t &servo_pin,
+          TIM_TypeDef *TIMx,
+          uint8_t gpio_AF_TIM_x,
+          uint8_t pwm_channel);
 };
 
 #endif /* INC_SERVO_H_ */
