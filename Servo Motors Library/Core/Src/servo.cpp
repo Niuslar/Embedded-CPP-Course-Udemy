@@ -12,6 +12,8 @@ Servo::Servo(pin_struct_t &servo_pin,
              uint8_t gpio_AF_TIM_x,
              uint8_t pwm_channel)
 {
+    pwm_ch = pwm_channel;
+
     GPIO_InitTypeDef GPIO_InitStruct = {0};
 
     /*Configure Servo pin */
@@ -24,7 +26,6 @@ Servo::Servo(pin_struct_t &servo_pin,
 
     /* TIM Config */
     TIM_OC_InitTypeDef sConfigOC = {0};
-    TIM_HandleTypeDef htim;
 
     htim.Instance = TIMx;
     htim.Init.Prescaler = 10 - 1;
@@ -35,11 +36,16 @@ Servo::Servo(pin_struct_t &servo_pin,
     HAL_TIM_PWM_Init(&htim);
 
     sConfigOC.OCMode = TIM_OCMODE_PWM1;
-    sConfigOC.Pulse = 2400;
+    sConfigOC.Pulse = SERVO_CENTRE_POS;
     sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
     sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
     HAL_TIM_PWM_ConfigChannel(&htim, &sConfigOC, pwm_channel);
 
     /* Start PWM */
     HAL_TIM_PWM_Start(&htim, pwm_channel);
+}
+
+void Servo::turnShaft(uint32_t position)
+{
+    __HAL_TIM_SET_COMPARE(&htim, pwm_ch, position);
 }

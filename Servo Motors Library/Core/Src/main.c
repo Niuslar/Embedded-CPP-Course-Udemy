@@ -53,7 +53,7 @@ static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
-extern void cpp_setup();
+extern void cpp_main();
 
 /* USER CODE END PFP */
 
@@ -96,7 +96,7 @@ int main(void)
     /* USER CODE BEGIN 2 */
 
     /* CPP Setup*/
-    cpp_setup();
+    cpp_main();
 
     /* USER CODE END 2 */
 

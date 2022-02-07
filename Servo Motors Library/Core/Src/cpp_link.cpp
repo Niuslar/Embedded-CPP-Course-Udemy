@@ -6,7 +6,7 @@
 extern "C"
 {
 #endif
-    void cpp_setup()
+    void cpp_main()
     {
         HAL_Init();
 
@@ -23,6 +23,12 @@ extern "C"
 
         while (1)
         {
+            servo_1.turnShaft(SERVO_LEFT_POS);
+            HAL_Delay(2000);
+            servo_1.turnShaft(SERVO_CENTRE_POS);
+            HAL_Delay(2000);
+            servo_1.turnShaft(SERVO_RIGHT_POS);
+            HAL_Delay(2000);
         }
     }
 
