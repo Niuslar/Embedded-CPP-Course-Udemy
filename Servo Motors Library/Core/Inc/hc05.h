@@ -13,9 +13,9 @@
 class HC05
 {
 private:
+public:
     UART_HandleTypeDef huart;
 
-public:
     HC05(pin_struct_t &uart_pin,
          uint8_t gpio_AF_UARTx,
          USART_TypeDef *USARTx,

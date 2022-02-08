@@ -30,7 +30,10 @@ extern "C"
 
         while (1)
         {
-            bluetooth_data = bluetooth_1.getChar();
+            if (bluetooth_1.huart.Instance->ISR & USART_ISR_RXNE)
+            {
+                bluetooth_data = bluetooth_1.getChar();
+            }
 
             if (bluetooth_data == 'l')
             {

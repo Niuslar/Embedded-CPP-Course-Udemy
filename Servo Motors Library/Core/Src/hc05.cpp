@@ -39,9 +39,7 @@ HC05::HC05(pin_struct_t &uart_pin,
 
 char HC05::getChar(void)
 {
-    /* Wait for RX buffe to be full then read */
-    while ((huart.Instance->ISR & USART_ISR_RXNE) != USART_ISR_RXNE)
-        ;
+    /* Read Receive Data Register */
     char data = (char)huart.Instance->RDR;
     return data;
 }
