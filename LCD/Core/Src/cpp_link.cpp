@@ -5,6 +5,9 @@
  *      Author: niuslar
  */
 
+#include "lcd.h"
+#include "main.h"
+
 #ifdef __cplusplus
 
 extern "C"
@@ -14,6 +17,23 @@ extern "C"
     void cpp_main(void)
     {
         /* Main implementation */
+
+        pin_struct_t lcd_rs = {LCD_RS_GPIO_Port, LCD_RS_Pin};
+        pin_struct_t lcd_en = {LCD_EN_GPIO_Port, LCD_EN_Pin};
+        pin_struct_t lcd_d4 = {LCD_D4_GPIO_Port, LCD_D4_Pin};
+        pin_struct_t lcd_d5 = {LCD_D5_GPIO_Port, LCD_D5_Pin};
+        pin_struct_t lcd_d6 = {LCD_D6_GPIO_Port, LCD_D6_Pin};
+        pin_struct_t lcd_d7 = {LCD_D7_GPIO_Port, LCD_D7_Pin};
+
+        CLCD lcd_1(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7);
+
+        lcd_1.print('N');
+        lcd_1.setCursor(1, 0);
+        lcd_1.print("Hello World!");
+
+        while (1)
+        {
+        }
     }
 
 #ifdef __cplusplus
