@@ -10,6 +10,8 @@
 
 #include "pin_map.h"
 
+#define NUM_BUF_LEN 15
+
 class CLCD
 {
 private:
@@ -31,6 +33,7 @@ public:
     void setCursor(uint8_t row, uint8_t column);
     void print(char data);
     void print(const char *p_data);
+    void print(int number);
 };
 
 #endif /* LCD_H_ */

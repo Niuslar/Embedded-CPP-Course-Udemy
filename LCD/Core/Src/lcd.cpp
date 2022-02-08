@@ -164,3 +164,36 @@ void CLCD::print(const char *p_data)
 {
     CLCD::writeBytes(p_data);
 }
+
+void CLCD::print(int number)
+{
+    /* Numbers with more digits than the length of the buffer will not be
+     * printed
+     */
+    char str_buffer[NUM_BUF_LEN] = {0};
+    uint8_t digits_counter = 1;
+    int temporal_number = number;
+
+    while (temporal_number / 10 != 0)
+    {
+        digits_counter++;
+        temporal_number /= 10;
+    }
+
+    /* Limit digits */
+    if (digits_counter >= NUM_BUF_LEN)
+    {
+        digits_counter = NUM_BUF_LEN - 1;
+    }
+
+    /* Store in buffer */
+    for (uint8_t i = digits_counter; i > 0; i--)
+    {
+        str_buffer[i - 1] = (number % 10) + 48;
+        number /= 10;
+    }
+
+    str_buffer[digits_counter] = '\0';
+
+    CLCD::writeBytes(str_buffer);
+}

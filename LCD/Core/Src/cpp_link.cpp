@@ -28,11 +28,16 @@ extern "C"
         CLCD lcd_1(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7);
 
         lcd_1.print('N');
-        lcd_1.setCursor(1, 0);
-        lcd_1.print("Hello World!");
+        lcd_1.setCursor(0, 0);
+
+        uint8_t number = 0;
 
         while (1)
         {
+            lcd_1.print(number);
+            lcd_1.setCursor(0, 0);
+            number++;
+            HAL_Delay(100);
         }
     }
 
